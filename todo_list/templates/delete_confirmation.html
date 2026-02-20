@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Todo - Delete</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="title">My Todo List</h1>
+    </header>
+    <main class="delete-section">
+        <h2 class="delete-message">
+            Are you sure you want to delete
+            <span class="delete-task">"{{task.title}}?"</span>
+        </h2>
+
+        <form action="" method="post" class="delete-form">
+            {% csrf_token %}
+            <div class="delete-buttons">
+                <button type="submit" class="btn confirm-delete">Yes, Delete</button>
+                <a href="{% url 'home' %}" class="btn cancel-delete">Cancel</a>
+            </div>
+        </form>
+
+    </main>
+</body>
+</html>

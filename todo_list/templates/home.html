@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Todo - Home</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="title">My Todo List</h1>
+    </header>
+
+    <section class="add-section">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn add-btn">Add Task</button>
+        </form>
+    </section>
+
+    <main class="task-container">
+        {% for task in tasks %}
+        <div class="task-card">
+            <h2 class="task-title">{{task.title}}</h2>
+            <div class="task-buttons">
+                <a href="{% url 'update' task.id %}" class="btn edit-btn">Edit</a>
+                <a href="{% url 'delete' task.id %}" class="btn delete-btn">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+            <h2 class="no-task">No Task Yet!</h2>
+        {% endfor %}
+
+    </main>
+
+</body>
+</html>
